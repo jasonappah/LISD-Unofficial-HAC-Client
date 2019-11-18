@@ -5,7 +5,7 @@
 # https://stackabuse.com/python-modules-creating-importing-and-sharing/
 
 from getpass import getpass
-# I'm using Python 3.7 on Windows and Python 3.8 on macOS to develop this program. I have not tested it on other versions, so your mileage may vary on a different version.
+# I'm using Python 3.7 on Windows and Python 3.8 on macOS to develop this program. Python 2.7 doesn't work. I have not tested it on other versions, so your mileage may vary on a different version.
 
 # You probably don't want to edit these variables... Seriously, though, don't do it.
 # You also probably won't want to edit the functions.
@@ -38,3 +38,5 @@ def getUserCreds():
         print("Password cannot be blank.")
         getUserCredsErr(2)
 
+def login(HAC, formdata = main.formdata):
+    r = requests.post(HAC.fullURL + "Account/LogOn?ReturnUrl=%2fHomeAccess", data=formdata)
