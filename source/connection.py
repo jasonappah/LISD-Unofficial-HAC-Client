@@ -10,7 +10,6 @@ import requests
 
 # You probably don't want to edit these variables... Seriously, though, don't do it.
 # You also probably won't want to edit the functions.
-r = ""
 # username = ""
 # password = ""
 username = "jason.antwiappah35@k12.leanderisd.org"
@@ -44,15 +43,15 @@ def getUserCreds():
         getUserCredsErr(2)
 
 def login(HAC, formdata, headers):
-    r = requests.post(HAC.base + "/HomeAccess/Account/LogOn?ReturnUrl=%2fHomeAccess", headers=headers, data=formdata)
-    if "Your attempt to log in was unsuccessful." in r.text:
+    login.r = requests.post(HAC.base + "/HomeAccess/Account/LogOn?ReturnUrl=%2fHomeAccess", headers=headers, data=formdata)
+    if "Your attempt to log in was unsuccessful." in login.r.text:
         raise NameError("Your attempt to log in was unsuccessful. Did you enter your username and password correctly?")
-    print(r.text)
-    print(r.url)
-    print(r.cookies)
+    print(login.r.text)
+    print(login.r.url)
+    print(login.r.cookies)
     # save the cookies, and use those cookies when accessing the /content pages which will maybe hopefully solve our problems???
-    saveCookies(r)
+    saveCookies(login.r)
 
 def saveCookies(r):
-    cookies = r.cookies
+    cookies = login.r.cookies
     print("Saved cookies to variable cookies")
