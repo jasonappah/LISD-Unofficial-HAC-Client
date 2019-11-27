@@ -25,7 +25,4 @@ else:
 # connection.getUserCreds()
 
 formdata = {'SCKTY00328510CustomEnabled': 'False', 'Database': 10, 'LogOnDetails.UserName': connection.username, 'LogOnDetails.Password': connection.password}
-
 connection.login(HAC, formdata, connection.headers)
-connection.getAssignments(HAC, formdata, connection.headers)
-connection.getDemographic(HAC, formdata, connection.headers)
