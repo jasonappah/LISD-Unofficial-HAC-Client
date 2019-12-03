@@ -4,7 +4,7 @@
 # https://github.com/ext0/RRISD-HAC-Reminders/blob/master/RRISD-HAC-Access/HAC.cs
 # https://stackabuse.com/python-modules-creating-importing-and-sharing/
 
-import connection
+import connection, scraper
 from HAC import *
 
 # Customize the line below to use this for your own school. Your mileage may vary.
@@ -24,7 +24,8 @@ else:
 
 # connection.getUserCreds()
 
-formdata = {'Database': 10, 'LogOnDetails.UserName': connection.username, 'LogOnDetails.Password': connection.password, 'SCKTY00328510CustomEnabled': 'True'}
-
-connection.login(HAC, formdata)
-
+formdata = {'SCKTY00328510CustomEnabled': 'False', 'Database': 10, 'LogOnDetails.UserName': connection.username, 'LogOnDetails.Password': connection.password}
+connection.login(HAC, formdata, connection.headers)
+scraper.scrape(connection.login.r)
+scraper.clean(scraper.scrape.grades)
+scraper.printGr()
