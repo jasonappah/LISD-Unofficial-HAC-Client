@@ -22,10 +22,10 @@ else:
     raise NameError("Can't reach server")
     # I don't know if that single quote in the middle of the string is good practice. Do I need to escape it??
 
-# connection.getUserCreds()
+#connection.getUserCreds()
 
 formdata = {'SCKTY00328510CustomEnabled': 'False', 'Database': 10, 'LogOnDetails.UserName': connection.username, 'LogOnDetails.Password': connection.password}
 connection.login(HAC, formdata, connection.headers)
 scraper.scrape(connection.login.r)
-scraper.clean(scraper.scrape.grades)
+scraper.cleanGr(scraper.scrape.grades)
 scraper.printGr()
