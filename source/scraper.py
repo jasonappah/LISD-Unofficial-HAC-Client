@@ -1,7 +1,7 @@
 from lxml import html
 from lxml.etree import tostring
 
-allowedChars = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z','\''}
+lunch = ["Lunch A (A Day)", "Lunch A (B Day)", "Lunch B (A Day)", "Lunch B (B Day)", "Lunch"]
 
 def scrape(response):
     tree = html.fromstring(response.content)
@@ -14,6 +14,17 @@ def scrape(response):
 # to solve the dilemma with joseph's test (lunch issue), it needs to iterate through scrape.classes to see if there is a lunch.
 # lunch = {"Lunch A (A Day)", "Lunch A (B Day)", "Lunch B (A Day)", "Lunch B (B Day)"}. 
 # if there is a lunch, get the index of that lunch, then check if the values of scrape.teacher and scrape.grades for that index arent blank. if they aren't blank, add an empty string at the index before into scrape.teacher and scrape.grades, then rerun the function to check for multiple lunches
+
+def fixLunch(classes, teachers, grades):
+    for i in classes:
+        for o in lunch:
+            if classes[i].text == lunch[o]:
+                teachers.insert(i, "No teacher")
+                grades.insert(i, "No teacher")
+                fixLunch(classes, teachers, grades)
+            
+        
+
 
 def cleanGr(list):
     cleanGr.newList = []
